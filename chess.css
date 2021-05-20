@@ -1,0 +1,11 @@
+.row{
+    display: flex;
+    width: 200px;
+    height: 25px;
+}
+
+.square{
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}

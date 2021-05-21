@@ -1,4 +1,4 @@
-let board = document.getElementById("innerBoard");
+let board = document.getElementById("chessBoard");
 const renderBoard = function() {
     for (i = 0; i < 8; i++) {
         let row = document.createElement("DIV");
@@ -7,16 +7,16 @@ const renderBoard = function() {
             row.style.flexDirection = '';
         }
         else{
-            row.style.flexDirection = 'row.reverse';
+            row.style.flexDirection = 'row-reverse';
         }
-        for (i = 0; i < 8; i++){
+        for (j = 0; j < 8; j++){
             let square = document.createElement("DIV");
             square.className = 'square';
-            if (i % 2 === 0){
-                square.style.backgroundColor = 'white';
+            if (j % 2 === 0){
+                square.style.backgroundColor = 'BurlyWood';
             }
             else {
-                square.style.backgroundColor = 'black';
+                square.style.backgroundColor = 'SaddleBrown';
             }
             row.appendChild(square);
         }

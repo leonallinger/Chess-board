@@ -14,14 +14,14 @@ export const renderPieces = {
 	placePieces(gameSetup){
 		for (const piecePosition in gameSetup){ // Loops through gameSetup until it ends (32 times)
 			const pieceType = gameSetup[piecePosition];
-			const pieceImageLocation = pieceImages[pieceType]; // Gets the images from the pieceImages.config 
 
 			const imgElement = document.createElement('img'); // Creats an element of an image
 			imgElement.classList.add('piece'); // Gives the image the class piece
 			imgElement.setAttribute('piece-type', pieceType); // Gives the image element an attribute which is the piece type
-			imgElement.src = `${pieceImageLocation}`;
+			imgElement.src = pieceImages[pieceType];
 
-			$(`#${piecePosition}`).append(imgElement);
+			const square = document.getElementById(piecePosition);
+			square.append(imgElement);
 		}
 	},
 }

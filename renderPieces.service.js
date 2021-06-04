@@ -12,13 +12,13 @@ export const renderPieces = {
 	},
 
 	placePieces(gameSetup){
-		for (const piecePosition in gameSetup){
+		for (const piecePosition in gameSetup){ // Loops through gameSetup until it ends (32 times)
 			const pieceType = gameSetup[piecePosition];
-			const pieceImageLocation = pieceImages[pieceType];
+			const pieceImageLocation = pieceImages[pieceType]; // Gets the images from the pieceImages.config 
 
-			const imgElement = document.createElement('img');
-			imgElement.classList.add('piece');
-			imgElement.setAttribute('piece-type', pieceType);
+			const imgElement = document.createElement('img'); // Creats an element of an image
+			imgElement.classList.add('piece'); // Gives the image the class piece
+			imgElement.setAttribute('piece-type', pieceType); // Gives the image element an attribute which is the piece type
 			imgElement.src = `${pieceImageLocation}`;
 
 			$(`#${piecePosition}`).append(imgElement);

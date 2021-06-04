@@ -1,6 +1,5 @@
 import {$, $$, $$$} from './utilities.js'
 import {initialGame} from './initialGame.config.js'
-import {chessConfig} from './chessConfig.config.js'
 import {pieceImages} from './pieceImages.config.js'
 
 export const renderPieces = {

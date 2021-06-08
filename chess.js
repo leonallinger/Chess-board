@@ -14,7 +14,7 @@ function drop(ev) {
     let data = ev.dataTransfer.getData("piece");
     let s = document.getElementById(data);
 
-    if (ev.target.parentNode.id === "chessBoard") {
+    if (ev.target.className === "square") {
         ev.target.appendChild(s);
     }
     else {

@@ -1,12 +1,12 @@
-function drag(ev){
-    ev.dataTransfer.setData("piece", ev.target.id);
-}
-window.drag = drag;
-
-function allowDrop(ev){
+function allowDrop(ev) {
     ev.preventDefault();
 }
 window.allowDrop = allowDrop;
+
+function drag(ev) {
+    ev.dataTransfer.setData("piece", ev.target.id);
+}
+window.drag = drag;
 
 function drop(ev) {
     ev.preventDefault();

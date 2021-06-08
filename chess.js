@@ -18,8 +18,17 @@ function drop(ev) {
         ev.target.appendChild(s);
     }
     else {
-        ev.target.parentNode.appendChild(s);
-        ev.target.parentNode.removeChild(ev.target);
+        let targetPieceColor = ev.target.id.substring(0, 5);
+        let startingPieceColor = s.id.substring(0, 5);
+
+        if (targetPieceColor === "white" && startingPieceColor === "black") {
+            ev.target.parentNode.appendChild(s);
+            ev.target.parentNode.removeChild(ev.target);
+        }
+        else if (targetPieceColor === "black" && startingPieceColor === "white") {
+            ev.target.parentNode.appendChild(s);
+            ev.target.parentNode.removeChild(ev.target);
+        }
     }
 }
 window.drop = drop;

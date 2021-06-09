@@ -1,5 +1,5 @@
-function nextChar(letter) {
-    return String.fromCharCode(letter.charCodeAt(0) + 1);
+function nextChar(letter, amount) {
+    return String.fromCharCode(letter.charCodeAt(0) + amount);
 }
 
 export const renderBoard = {
@@ -7,17 +7,17 @@ export const renderBoard = {
         const board = document.getElementById("chessBoard");
         let change = true;
         let backgroundColor = 'BurlyWood';
-        let row = 'a';
+        let file = 'a';
         let rank = '8';
         for (let i = 0; i < 64; i++) {
             let square = document.createElement('DIV');
             square.className = 'square';
-            square.setAttribute('ondragover', 'window.allowDrop(event)')
-            square.setAttribute('ondrop', 'window.drop(event)')
-            square.id = row + rank;
-            row = nextChar(row);
-            if (row === 'i') {
-                row = 'a';
+            square.setAttribute('ondragover', 'allowDrop(event)')
+            square.setAttribute('ondrop', 'drop(event)')
+            square.id = file + rank;
+            file = nextChar(file, 1);
+            if (file === 'i') {
+                file = 'a';
                 rank--;
             }
 

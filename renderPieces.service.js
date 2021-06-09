@@ -11,12 +11,12 @@ export const renderPieces = {
 	},
 
 	placePieces(gameSetup){
-		for (const piecePosition in gameSetup) { // Loops through gameSetup until it ends (32 times)
+		for (const piecePosition in gameSetup) {
 			const pieceType = gameSetup[piecePosition];
 
-			const imgElement = document.createElement('img'); // Creats an element of an image
-			imgElement.classList.add('piece'); // Gives the image the class piece
-			imgElement.setAttribute('id', pieceType + '_' + piecePosition); // Gives the image element an attribute which is the piece type
+			const imgElement = document.createElement('img');
+			imgElement.classList.add('piece');
+			imgElement.setAttribute('id', pieceType + '_' + piecePosition);
 
 			imgElement.setAttribute('draggable', 'true');
 			imgElement.setAttribute('ondragstart', 'window.drag(event)')

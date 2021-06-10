@@ -8,7 +8,7 @@ addEventListener('DOMContentLoaded', _ => {
     renderPieces.piecesRender()
 })
 
-import { knightMoves } from './pieceMoves.service.js'
+import { knightMoves, bishopMoves } from './pieceMoves.service.js'
 
 import { dropPieces } from './dropPieces.service.js'
 
@@ -34,6 +34,11 @@ function drop(ev) {
 
     if (startingPieceType === "kn") {
         if (knightMoves(startSquare).indexOf(ev.target.id) > -1 || knightMoves(startSquare).indexOf(ev.target.parentNode.id) > -1 ) {
+            dropPieces(ev);
+        }
+    }
+    else if (startingPieceType === "bi") {
+        if (bishopMoves(startSquare).indexOf(ev.target.id) > -1 || bishopMoves(startSquare).indexOf(ev.target.parentNode.id) > -1 ) {
             dropPieces(ev);
         }
     }

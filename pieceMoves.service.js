@@ -26,28 +26,23 @@ export const bishopMoves = function (square) {
     let moves = new Array(32);
 
     let i = 0;
-    for (i; i < 7; i++){
-        moves[i] = nextChar(file, (i+1)) + (rank + (i+1));
-
+    for (let j = 1; i < 8; j++){
+        moves[i] = nextChar(file, j) + (rank + j);
         if (document.getElementById(moves[i]) === null){
             break;
         }
-
-        if (document.getElementById(moves[i]).children.length > 0){
-            i++;
+        i++;
+        if (document.getElementById(moves[i-1]).children.length > 0){
             break;
         }
     }
 
     for (let j = 1; j < 8; j++){
         moves[i] = nextChar(file, -j) + (rank - j);
-
         if (document.getElementById(moves[i]) === null){
             break;
         }
-
         i++;
-
         if (document.getElementById(moves[i-1]).children.length > 0){
             break;
         }
@@ -55,13 +50,10 @@ export const bishopMoves = function (square) {
 
     for (let j = 1; j < 8; j++){
         moves[i] = nextChar(file, j) + (rank - j);
-
         if (document.getElementById(moves[i]) === null){
             break;
         }
-        
         i++;
-
         if (document.getElementById(moves[i-1]).children.length > 0){
             break;
         }
@@ -69,13 +61,10 @@ export const bishopMoves = function (square) {
 
     for (let j = 1; j < 8; j++){
         moves[i] = nextChar(file, -j) + (rank + j);
-
         if (document.getElementById(moves[i]) === null){
             break;
         }
-
         i++;
-
         if (document.getElementById(moves[i-1]).children.length > 0){
             break;
         }

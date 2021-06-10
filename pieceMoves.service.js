@@ -18,3 +18,69 @@ export const knightMoves = function (square) {
 
     return moves;
 }
+
+export const bishopMoves = function (square) {
+    let file = square.substring(0, 1);
+    let rank = parseInt(square.substring(1, 2));
+
+    let moves = new Array(32);
+
+    let i = 0;
+    for (i; i < 7; i++){
+        moves[i] = nextChar(file, (i+1)) + (rank + (i+1));
+
+        if (document.getElementById(moves[i]) === null){
+            break;
+        }
+
+        if (document.getElementById(moves[i]).children.length > 0){
+            i++;
+            break;
+        }
+    }
+
+    for (let j = 1; j < 8; j++){
+        moves[i] = nextChar(file, -j) + (rank - j);
+
+        if (document.getElementById(moves[i]) === null){
+            break;
+        }
+
+        i++;
+
+        if (document.getElementById(moves[i-1]).children.length > 0){
+            break;
+        }
+    }
+
+    for (let j = 1; j < 8; j++){
+        moves[i] = nextChar(file, j) + (rank - j);
+
+        if (document.getElementById(moves[i]) === null){
+            break;
+        }
+        
+        i++;
+
+        if (document.getElementById(moves[i-1]).children.length > 0){
+            break;
+        }
+    }
+
+    for (let j = 1; j < 8; j++){
+        moves[i] = nextChar(file, -j) + (rank + j);
+
+        if (document.getElementById(moves[i]) === null){
+            break;
+        }
+
+        i++;
+
+        if (document.getElementById(moves[i-1]).children.length > 0){
+            break;
+        }
+    }
+
+
+    return moves;
+}

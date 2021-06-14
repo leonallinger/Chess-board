@@ -2,7 +2,7 @@ function nextChar(letter, amount) {
     return String.fromCharCode(letter.charCodeAt(0) + amount);
 }
 
-export const knightMoves = function (square) {
+export const knightMoves = function(square) {
     let file = square.substring(0, 1);
     let rank = parseInt(square.substring(1, 2));
 
@@ -19,7 +19,7 @@ export const knightMoves = function (square) {
     return moves;
 }
 
-export const bishopMoves = function (square) {
+export const bishopMoves = function(square) {
     let file = square.substring(0, 1);
     let rank = parseInt(square.substring(1, 2));
 
@@ -61,6 +61,61 @@ export const bishopMoves = function (square) {
 
     for (let j = 1; j < 8; j++){
         moves[i] = nextChar(file, -j) + (rank + j);
+        if (document.getElementById(moves[i]) === null){
+            break;
+        }
+        i++;
+        if (document.getElementById(moves[i-1]).children.length > 0){
+            break;
+        }
+    }
+
+
+    return moves;
+}
+
+export const rookMoves = function(square) {
+    let file = square.substring(0, 1);
+    let rank = parseInt(square.substring(1, 2));
+
+    let moves = new Array(32);
+
+    let i = 0;
+    for (let j = 1; i < 8; j++){
+        moves[i] = file + (rank + j);
+        if (document.getElementById(moves[i]) === null){
+            break;
+        }
+        i++;
+        if (document.getElementById(moves[i-1]).children.length > 0){
+            break;
+        }
+    }
+
+    for (let j = 1; j < 8; j++){
+        moves[i] = file + (rank - j);
+        if (document.getElementById(moves[i]) === null){
+            break;
+        }
+        i++;
+        if (document.getElementById(moves[i-1]).children.length > 0){
+            break;
+        }
+    }
+
+    for (let j = 1; j < 8; j++){
+        moves[i] = nextChar(file, j) + rank;
+        if (document.getElementById(moves[i]) === null){
+            break;
+        }
+        i++;
+        if (document.getElementById(moves[i-1]).children.length > 0){
+            break;
+        }
+    }
+
+    for (let j = 1; j < 8; j++){
+        moves[i] = nextChar(file, -j) + rank;
         if (document.getElementById(moves[i]) === null){
             break;
         }

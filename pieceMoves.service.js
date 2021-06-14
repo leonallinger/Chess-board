@@ -2,6 +2,23 @@ function nextChar(letter, amount) {
     return String.fromCharCode(letter.charCodeAt(0) + amount);
 }
 
+export const kingMoves = function(square) {
+    let file = square.substring(0, 1);
+    let rank = parseInt(square.substring(1, 2));
+
+    let moves = new Array(8);
+    moves[0] = file + (rank + 1);
+    moves[1] = file + (rank - 1);
+    moves[2] = nextChar(file, 1) + (rank + 1);
+    moves[3] = nextChar(file, 1) + (rank - 1);
+    moves[4] = nextChar(file, -1) + (rank + 1);
+    moves[5] = nextChar(file, -1) + (rank - 1);
+    moves[6] = nextChar(file, 1) + rank;
+    moves[7] = nextChar(file, -1) + rank;
+
+    return moves;
+}
+
 export const knightMoves = function(square) {
     let file = square.substring(0, 1);
     let rank = parseInt(square.substring(1, 2));

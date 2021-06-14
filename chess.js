@@ -8,7 +8,7 @@ addEventListener('DOMContentLoaded', _ => {
     renderPieces.piecesRender()
 })
 
-import { knightMoves, bishopMoves, rookMoves, kingMoves } from './pieceMoves.service.js'
+import { kingMoves, knightMoves, bishopMoves, rookMoves } from './pieceMoves.service.js'
 
 import { dropPieces } from './dropPieces.service.js'
 
@@ -32,7 +32,12 @@ function drop(ev) {
     
     let startingPieceType = startPiece.substring(6, 8);
 
-    if (startingPieceType === "kn") {
+    if (startingPieceType === "ki") {
+        if (kingMoves(startSquare).indexOf(ev.target.id) > -1 || kingMoves(startSquare).indexOf(ev.target.parentNode.id) > -1) {
+            dropPieces(ev);
+        }
+    }
+    else if (startingPieceType === "kn") {
         if (knightMoves(startSquare).indexOf(ev.target.id) > -1 || knightMoves(startSquare).indexOf(ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
@@ -49,11 +54,6 @@ function drop(ev) {
     }
     else if (startingPieceType === "qu") {
         if (rookMoves(startSquare).indexOf(ev.target.id) > -1 || rookMoves(startSquare).indexOf(ev.target.parentNode.id) > -1 || bishopMoves(startSquare).indexOf(ev.target.id) > -1 || bishopMoves(startSquare).indexOf(ev.target.parentNode.id) > -1){
-            dropPieces(ev);
-        }
-    }
-    else if (startingPieceType === "ki") {
-        if (kingMoves(startSquare).indexOf(ev.target.id) > -1 || kingMoves(startSquare).indexOf(ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }

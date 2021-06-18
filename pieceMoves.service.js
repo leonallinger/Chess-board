@@ -2,6 +2,31 @@ function nextChar(letter, amount) {
     return String.fromCharCode(letter.charCodeAt(0) + amount);
 }
 
+export const pawnMoves = function(square, ev) {
+    let data = ev.dataTransfer.getData("piece");
+    let startingPieceColor = data.substring(0, 5);
+
+    let file = square.substring(0, 1);
+    let rank = parseInt(square.substring(1, 2));
+
+    let moves = new Array(4);
+
+    if (startingPieceColor === "white"){
+        moves[0] = file + (rank + 1);
+        if (rank === 2){
+            moves[1] = file + (rank + 2);
+        }
+    }
+    else if (startingPieceColor === "black"){
+        moves[0] = file + (rank - 1);
+        if (rank === 7){
+            moves[1] = file + (rank - 2);
+        }
+    }
+
+    return moves;
+}
+
 export const kingMoves = function(square) {
     let file = square.substring(0, 1);
     let rank = parseInt(square.substring(1, 2));

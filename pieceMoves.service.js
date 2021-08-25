@@ -12,15 +12,48 @@ export const pawnMoves = function(square, ev) {
     let moves = new Array(4);
 
     if (startingPieceColor === "white"){
-        moves[0] = file + (rank + 1);
+        let pawnMove1 = file + (rank + 1);
+        if (document.getElementById(pawnMove1).children.length === 0) {
+            moves[0] = pawnMove1;
+        }
+
         if (rank === 2){
-            moves[1] = file + (rank + 2);
+            let pawnMove2 = file + (rank + 2);
+            if (document.getElementById(pawnMove2).children.length === 0) {
+                moves[1] = pawnMove2;
+            }
+        }
+
+        let pawnCaptures1 = nextChar(file, 1) + (rank + 1);
+        let pawnCaptures2 = nextChar(file, -1) + (rank + 1);
+        if (document.getElementById(pawnCaptures1).children.length > 0) {
+            moves[2] = pawnCaptures1;
+        }
+        if (document.getElementById(pawnCaptures2).children.length > 0) {
+            moves[3] = pawnCaptures2;
         }
     }
+
     else if (startingPieceColor === "black"){
-        moves[0] = file + (rank - 1);
-        if (rank === 7){
-            moves[1] = file + (rank - 2);
+        let pawnMove1 = file + (rank - 1);
+        if (document.getElementById(pawnMove1).children.length === 0) {
+            moves[0] = pawnMove1;
+        }
+
+        if (rank === 7) {
+            let pawnMove2 = file + (rank - 2);
+            if (document.getElementById(pawnMove2).children.length === 0) {
+                moves[1] = pawnMove2;
+            }
+        }
+
+        let pawnCaptures1 = nextChar(file, 1) + (rank - 1);
+        let pawnCaptures2 = nextChar(file, -1) + (rank - 1);
+        if (document.getElementById(pawnCaptures1).children.length > 0) {
+            moves[2] = pawnCaptures1;
+        }
+        if (document.getElementById(pawnCaptures2).children.length > 0) {
+            moves[3] = pawnCaptures2;
         }
     }
 

@@ -7,14 +7,19 @@
 }
 
 #chessBoard{
-  border: solid 1px black;
-  width: 400px;
-  height: 400px;
-  display: inline-flex;
-  flex-wrap: wrap;
+    border: solid 1px black;
+    width: 400px;
+    height: 400px;
+    display: inline-flex;
+    flex-wrap: wrap;
 }
 
 .piece{
     width: 50px;
     height: 50px;
 }
+
+#playerTurn{
+    font-family: "Courier New", monospace;
+    font-size: 30px;
+    margin-top: 10px;

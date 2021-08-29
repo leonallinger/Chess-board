@@ -1,6 +1,7 @@
 let playerTurn = "white";
 
 export const dropPieces = function(ev){
+
     let data = ev.dataTransfer.getData("piece");
     let s = document.getElementById(data);
 
@@ -28,5 +29,15 @@ export const dropPieces = function(ev){
             ev.target.parentNode.removeChild(ev.target);
             playerTurn = "white";
         }
+    }
+
+    let playerTurnText = document.getElementById("playerTurn");
+
+    if (playerTurn === "white"){
+        playerTurnText.innerText = "White to move";
+    }
+
+    else if (playerTurn === "black"){
+        playerTurnText.innerText = "Black to move";
     }
 }

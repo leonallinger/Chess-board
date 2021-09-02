@@ -29,35 +29,36 @@ function drop(ev) {
 
     let startPiece = ev.dataTransfer.getData("piece");
     let startSquare = ev.dataTransfer.getData("startSquare");
-    
-    let startingPieceType = startPiece.substring(6, 8);
 
-    if (startingPieceType === "pa") {
+    let num = startPiece.indexOf("_", 6);
+    let startingPieceType = startPiece.substring(6, num);
+
+    if (startingPieceType === "pawn") {
         if (pawnMoves(startSquare, ev).indexOf(ev.target.id) > -1 || pawnMoves(startSquare, ev).indexOf(ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }
-    else if (startingPieceType === "ki") {
+    else if (startingPieceType === "king") {
         if (kingMoves(startSquare).indexOf(ev.target.id) > -1 || kingMoves(startSquare).indexOf(ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }
-    else if (startingPieceType === "kn") {
+    else if (startingPieceType === "knight") {
         if (knightMoves(startSquare).indexOf(ev.target.id) > -1 || knightMoves(startSquare).indexOf(ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }
-    else if (startingPieceType === "bi") {
+    else if (startingPieceType === "bishop") {
         if (bishopMoves(startSquare).indexOf(ev.target.id) > -1 || bishopMoves(startSquare).indexOf(ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }
-    else if (startingPieceType === "ro") {
+    else if (startingPieceType === "rook") {
         if (rookMoves(startSquare).indexOf(ev.target.id) > -1 || rookMoves(startSquare).indexOf(ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }
-    else if (startingPieceType === "qu") {
+    else if (startingPieceType === "queen") {
         if (rookMoves(startSquare).indexOf(ev.target.id) > -1 || rookMoves(startSquare).indexOf(ev.target.parentNode.id) > -1 || bishopMoves(startSquare).indexOf(ev.target.id) > -1 || bishopMoves(startSquare).indexOf(ev.target.parentNode.id) > -1){
             dropPieces(ev);
         }

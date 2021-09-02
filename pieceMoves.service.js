@@ -11,47 +11,38 @@ export const pawnMoves = function(square, ev) {
 
     let moves = new Array(4);
 
+    var p, q;
     if (startingPieceColor === "white"){
-        let pawnMove1 = file + (rank + 1);
-        if (document.getElementById(pawnMove1).children.length === 0) {
-            moves[0] = pawnMove1;
-        }
+        p = 1;
+        q = 2;
+    }
+    else if (startingPieceColor === "black"){
+        p = -1;
+        q = 7;
+    }
 
-        if (rank === 2){
-            let pawnMove2 = file + (rank + 2);
-            if (document.getElementById(pawnMove2).children.length === 0) {
-                moves[1] = pawnMove2;
-            }
-        }
+    let pawnMove1 = file + (rank + 1*p);
+    if (document.getElementById(pawnMove1).children.length === 0) {
+        moves[0] = pawnMove1;
+    }
 
-        let pawnCaptures1 = nextChar(file, 1) + (rank + 1);
-        let pawnCaptures2 = nextChar(file, -1) + (rank + 1);
-        if (document.getElementById(pawnCaptures1).children.length > 0) {
-            moves[2] = pawnCaptures1;
-        }
-        if (document.getElementById(pawnCaptures2).children.length > 0) {
-            moves[3] = pawnCaptures2;
+    if (rank === q){
+        let pawnMove2 = file + (rank + 2*p);
+        if (document.getElementById(pawnMove2).children.length === 0) {
+            moves[1] = pawnMove2;
         }
     }
 
-    else if (startingPieceColor === "black"){
-        let pawnMove1 = file + (rank - 1);
-        if (document.getElementById(pawnMove1).children.length === 0) {
-            moves[0] = pawnMove1;
-        }
+    let pawnCaptures1 = nextChar(file, 1) + (rank + 1*p);
+    let pawnCaptures2 = nextChar(file, -1) + (rank + 1*p);
 
-        if (rank === 7) {
-            let pawnMove2 = file + (rank - 2);
-            if (document.getElementById(pawnMove2).children.length === 0) {
-                moves[1] = pawnMove2;
-            }
-        }
-
-        let pawnCaptures1 = nextChar(file, 1) + (rank - 1);
-        let pawnCaptures2 = nextChar(file, -1) + (rank - 1);
+    if (document.getElementById(pawnCaptures1) != null){
         if (document.getElementById(pawnCaptures1).children.length > 0) {
             moves[2] = pawnCaptures1;
         }
+    }
+        
+    if (document.getElementById(pawnCaptures2) != null){
         if (document.getElementById(pawnCaptures2).children.length > 0) {
             moves[3] = pawnCaptures2;
         }
@@ -101,50 +92,26 @@ export const bishopMoves = function(square) {
     let moves = new Array(32);
 
     let i = 0;
-    for (let j = 1; i < 8; j++){
-        moves[i] = nextChar(file, j) + (rank + j);
-        if (document.getElementById(moves[i]) === null){
-            break;
-        }
-        i++;
-        if (document.getElementById(moves[i-1]).children.length > 0){
-            break;
+
+    const findMoves = function(p, q) {
+        for (let j = 1; j < 8; j++){
+            moves[i] = nextChar(file, j*p) + (rank+j*q);
+            if (document.getElementById(moves[i]) === null){
+                moves.splice(i, 1);
+                break;
+            }
+            if (document.getElementById(moves[i]).children.length > 0){
+                i++;
+                break;
+            }
+            i++;
         }
     }
 
-    for (let j = 1; j < 8; j++){
-        moves[i] = nextChar(file, -j) + (rank - j);
-        if (document.getElementById(moves[i]) === null){
-            break;
-        }
-        i++;
-        if (document.getElementById(moves[i-1]).children.length > 0){
-            break;
-        }
-    }
-
-    for (let j = 1; j < 8; j++){
-        moves[i] = nextChar(file, j) + (rank - j);
-        if (document.getElementById(moves[i]) === null){
-            break;
-        }
-        i++;
-        if (document.getElementById(moves[i-1]).children.length > 0){
-            break;
-        }
-    }
-
-    for (let j = 1; j < 8; j++){
-        moves[i] = nextChar(file, -j) + (rank + j);
-        if (document.getElementById(moves[i]) === null){
-            break;
-        }
-        i++;
-        if (document.getElementById(moves[i-1]).children.length > 0){
-            break;
-        }
-    }
-
+    findMoves(1, 1);
+    findMoves(-1, -1);
+    findMoves(1, -1);
+    findMoves(-1, 1);
 
     return moves;
 }
@@ -156,50 +123,26 @@ export const rookMoves = function(square) {
     let moves = new Array(32);
 
     let i = 0;
-    for (let j = 1; i < 8; j++){
-        moves[i] = file + (rank + j);
-        if (document.getElementById(moves[i]) === null){
-            break;
-        }
-        i++;
-        if (document.getElementById(moves[i-1]).children.length > 0){
-            break;
+
+    const findMoves = function(p, q) {
+        for (let j = 1; j < 8; j++){
+            moves[i] = nextChar(file, j*p) + (rank+j*q);
+            if (document.getElementById(moves[i]) === null){
+                moves.splice(i, 1);
+                break;
+            }
+            if (document.getElementById(moves[i]).children.length > 0){
+                i++;
+                break;
+            }
+            i++;
         }
     }
 
-    for (let j = 1; j < 8; j++){
-        moves[i] = file + (rank - j);
-        if (document.getElementById(moves[i]) === null){
-            break;
-        }
-        i++;
-        if (document.getElementById(moves[i-1]).children.length > 0){
-            break;
-        }
-    }
-
-    for (let j = 1; j < 8; j++){
-        moves[i] = nextChar(file, j) + rank;
-        if (document.getElementById(moves[i]) === null){
-            break;
-        }
-        i++;
-        if (document.getElementById(moves[i-1]).children.length > 0){
-            break;
-        }
-    }
-
-    for (let j = 1; j < 8; j++){
-        moves[i] = nextChar(file, -j) + rank;
-        if (document.getElementById(moves[i]) === null){
-            break;
-        }
-        i++;
-        if (document.getElementById(moves[i-1]).children.length > 0){
-            break;
-        }
-    }
-
+    findMoves(0, 1);
+    findMoves(0, -1);
+    findMoves(1, 0);
+    findMoves(-1, 0);
 
     return moves;
 }

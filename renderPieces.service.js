@@ -19,7 +19,7 @@ export const renderPieces = {
 			imgElement.setAttribute('id', pieceType + '_' + piecePosition);
 
 			imgElement.setAttribute('draggable', 'true');
-			imgElement.setAttribute('ondragstart', 'window.drag(event)')
+			imgElement.setAttribute('ondragstart', 'drag(event)')
 			imgElement.src = pieceImages[pieceType];
 
 			const square = document.getElementById(piecePosition);

@@ -65,6 +65,12 @@ export const kingMoves = function(square) {
     moves[6] = nextChar(file, 1) + rank;
     moves[7] = nextChar(file, -1) + rank;
 
+    for (let i = 0; i < 8; i++){
+        if (document.getElementById(moves[i]) === null){
+            moves.splice(i, 1);
+        }
+    }
+
     return moves;
 }
 
@@ -81,6 +87,12 @@ export const knightMoves = function(square) {
     moves[5] = nextChar(file, 1) + (rank - 2);
     moves[6] = nextChar(file, 2) + (rank + 1);
     moves[7] = nextChar(file, 2) + (rank - 1);
+
+    for (let i = 0; i < 8; i++){
+        if (document.getElementById(moves[i]) === null){
+            moves.splice(i, 1);
+        }
+    }
 
     return moves;
 }

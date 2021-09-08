@@ -7,8 +7,6 @@ export const allWhiteMoves = function(){
 	let rank = 1;
 	let piecePosition = new Array();
 
-	let all
-
 	for (let i = 0; i < 64; i++){
 		piecePosition[i] = file+rank;
 

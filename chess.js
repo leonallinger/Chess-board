@@ -1,11 +1,17 @@
-import { renderBoard } from './renderBoard.service.js'
+import { boardRender } from './renderBoard.service.js'
 addEventListener('DOMContentLoaded', _ => {
-    renderBoard.boardRender()
+    boardRender();
 })
 
-import { renderPieces } from './renderPieces.service.js'
+import { piecesRender } from './renderPieces.service.js'
 addEventListener('DOMContentLoaded', _ => {
-    renderPieces.piecesRender()
+    piecesRender();
+})
+
+import { attackedByWhite, attackedByBlack } from './attackedSquares.service.js'
+addEventListener('DOMContentLoaded', _ => {
+    attackedByWhite();
+    attackedByBlack();
 })
 
 import { allowDrop, drag, drop } from './dragAndDrop.service.js'

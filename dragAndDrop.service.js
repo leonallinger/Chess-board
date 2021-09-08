@@ -1,5 +1,6 @@
-import { pawnMoves, kingMoves, knightMoves, bishopMoves, rookMoves } from './pieceMoves.service.js'
+import { pawnMoves, pawnCaptures, kingMoves, knightMoves, bishopMoves, rookMoves } from './pieceMoves.service.js'
 import { dropPieces } from './dropPieces.service.js'
+import { attackedByWhite, attackedByBlack } from './attackedSquares.service.js'
 
 export const allowDrop = function(ev) {
     ev.preventDefault();
@@ -12,17 +13,20 @@ export const drag = function(ev) {
 }
 window.drag = drag;
 
-export const drop = function(ev) {
+export const drop = function (ev) {
     ev.preventDefault();
 
     let startPiece = ev.dataTransfer.getData("piece");
     let startSquare = ev.dataTransfer.getData("startSquare");
 
+    let data = ev.dataTransfer.getData("piece");
+    let startingPieceColor = data.substring(0, 5);
+
     let num = startPiece.indexOf("_", 6);
     let startingPieceType = startPiece.substring(6, num);
 
     if (startingPieceType === "pawn") {
-        if (pawnMoves(startSquare, ev).indexOf(ev.target.id) > -1 || pawnMoves(startSquare, ev).indexOf(ev.target.parentNode.id) > -1) {
+        if (pawnMoves(startSquare, startingPieceColor).indexOf(ev.target.id) > -1 || pawnCaptures(startSquare, startingPieceColor).indexOf(ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }
@@ -51,5 +55,8 @@ export const drop = function(ev) {
             dropPieces(ev);
         }
     }
+
+    attackedByWhite();
+    attackedByBlack();
 }
 window.drop = drop;

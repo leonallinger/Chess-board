@@ -1,7 +1,6 @@
 import { pawnMoves, pawnCaptures, kingMoves, knightMoves, bishopMoves, rookMoves } from './pieceMoves.service.js'
 import { dropPieces } from './dropPieces.service.js'
 import { attackedByWhite, attackedByBlack } from './attackedSquares.service.js'
-import { legalKingMoves } from './legalPieceMoves.service.js'
 
 export const allowDrop = function(ev) {
     ev.preventDefault();
@@ -32,7 +31,7 @@ export const drop = function (ev) {
         }
     }
     else if (startingPieceType === "king") {
-        if (legalKingMoves(startSquare, startingPieceColor).indexOf(ev.target.id) > -1 || legalKingMoves(startSquare, startingPieceColor).indexOf(ev.target.parentNode.id) > -1) {
+        if (kingMoves(startSquare).indexOf(ev.target.id) > -1 || kingMoves(startSquare).indexOf(ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }
@@ -56,8 +55,5 @@ export const drop = function (ev) {
             dropPieces(ev);
         }
     }
-
-    attackedByWhite();
-    attackedByBlack();
 }
 window.drop = drop;

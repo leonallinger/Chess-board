@@ -1,6 +1,5 @@
 import { pawnMoves, pawnCaptures, kingMoves, knightMoves, bishopMoves, rookMoves } from './pieceMoves.service.js'
 import { dropPieces } from './dropPieces.service.js'
-import { attackedByWhite, attackedByBlack } from './attackedSquares.service.js'
 
 export const allowDrop = function(ev) {
     ev.preventDefault();

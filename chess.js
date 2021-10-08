@@ -3,9 +3,9 @@ addEventListener('DOMContentLoaded', _ => {
     boardRender();
 })
 
-import { piecesRender } from './renderPieces.service.js'
+import { placePieces } from './renderPieces.service.js'
 addEventListener('DOMContentLoaded', _ => {
-    piecesRender();
+    placePieces();
 })
 
 import { attackedByWhite, attackedByBlack } from './attackedSquares.service.js'

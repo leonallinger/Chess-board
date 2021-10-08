@@ -1,14 +1,32 @@
 import { initialGame } from './initialGame.config.js'
 import { pieceImages } from './pieceImages.config.js'
 
-export const piecesRender = function() {
+const startFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+export const loadPositionFromFen = function(fen){
 
-	const gameSetup = initialGame;
+	let fenBoard = fen.split(" ")[0];
+	let file = 1;
+	let rank = 8;
 
-	placePieces(gameSetup);
+	for (let symbol of fenBoard){
+		if (symbol === '/'){
+			file = 1;
+			rank--;
+		}
+		else{
+			if (!isNaN(parseInt(symbol))){
+				file += parseInt(symbol);
+			}
+			else{
+				let pieceColor = (symbol === symbol.toUpperCase()) ? "white" : "black";
+			}
+		}
+	}
 }
 
-const placePieces = function(gameSetup){
+export const placePieces = function(){
+	const gameSetup = initialGame;
+
 	for (const piecePosition in gameSetup) {
 		const pieceType = gameSetup[piecePosition];
 

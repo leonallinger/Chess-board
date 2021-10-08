@@ -27,6 +27,7 @@ export const dropPieces = function(ev){
                         ev.target.removeChild(s);
                         startSquare.appendChild(s);
 
+                        attackedByWhite();
                         playerTurn = "white";
                     }
                     break;
@@ -36,6 +37,7 @@ export const dropPieces = function(ev){
                         ev.target.removeChild(s);
                         startSquare.appendChild(s);
 
+                        attackedByBlack();
                         playerTurn = "black";
                     }
                     break;
@@ -62,6 +64,7 @@ export const dropPieces = function(ev){
                         targetSquare.appendChild(ev.target);
                         startSquare.appendChild(s);
 
+                        attackedByWhite();
                         playerTurn = "white";
                     }
                     break;
@@ -72,6 +75,7 @@ export const dropPieces = function(ev){
                         targetSquare.appendChild(ev.target);
                         startSquare.appendChild(s);
 
+                        attackedByBlack();
                         playerTurn = "black";
                     }
                     break;

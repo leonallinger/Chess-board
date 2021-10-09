@@ -21,13 +21,13 @@ export const pawnMoves = function(square, pieceColor) {
 
     let pawnMove1 = file + (rank + 1*p);
     if (document.getElementById(pawnMove1).children.length === 0) {
-        moves[0] = pawnMove1;
+        moves.push(file + rank + '-' + pawnMove1);
     }
 
     if (rank === q){
         let pawnMove2 = file + (rank + 2*p);
         if (document.getElementById(pawnMove2).children.length === 0) {
-            moves[1] = pawnMove2;
+            moves.push(file + rank + '-' + pawnMove2);
         }
     }
 
@@ -53,11 +53,11 @@ export const pawnCaptures = function (square, pieceColor) {
     let pawnCaptures2 = nextChar(file, -1) + (rank + 1 * p);
 
     if (document.getElementById(pawnCaptures1) != null) {
-        moves[0] = pawnCaptures1;
+        moves.push(file + rank + 'x' + pawnCaptures1);
     }
 
     if (document.getElementById(pawnCaptures2) != null) {
-        moves[1] = pawnCaptures2;
+        moves.push(file + rank + 'x' + pawnCaptures2);
     }
 
     return moves;
@@ -78,11 +78,9 @@ export const kingMoves = function(square) {
     potentialMoves[7] = nextChar(file, -1) + rank;
 
     let moves = new Array();
-    let j = 0;
     for (let i = 0; i < 8; i++) {
         if (document.getElementById(potentialMoves[i]) != null) {
-            moves[j] = potentialMoves[i];
-            j++;
+            moves.push('K' + file + rank + '-' + potentialMoves[i]);
         }
     }
 
@@ -104,11 +102,9 @@ export const knightMoves = function(square) {
     potentialMoves[7] = nextChar(file, 2) + (rank - 1);
 
     let moves = new Array();
-    let j = 0;
     for (let i = 0; i < 8; i++){
         if (document.getElementById(potentialMoves[i]) != null) {
-            moves[j] = potentialMoves[i];
-            j++;
+            moves.push('N' + file + rank + '-' + potentialMoves[i]);
         }
     }
 
@@ -125,12 +121,14 @@ export const bishopMoves = function(square) {
 
     const findMoves = function(p, q) {
         for (let j = 1; j < 8; j++){
-            moves[i] = nextChar(file, j*p) + (rank+j*q);
-            if (document.getElementById(moves[i]) === null){
-                moves.splice(i, 1);
+            let bishopMove = nextChar(file, j * p) + (rank + j * q);
+            if (document.getElementById(bishopMove) === null) {
                 break;
             }
-            if (document.getElementById(moves[i]).children.length > 0){
+            else {
+                moves[i] = 'B' + file + rank + '-' + bishopMove;
+            }
+            if (document.getElementById(bishopMove).children.length > 0){
                 i++;
                 break;
             }
@@ -156,12 +154,14 @@ export const rookMoves = function(square) {
 
     const findMoves = function(p, q) {
         for (let j = 1; j < 8; j++){
-            moves[i] = nextChar(file, j*p) + (rank+j*q);
-            if (document.getElementById(moves[i]) === null){
-                moves.splice(i, 1);
+            let rookMove = nextChar(file, j*p) + (rank+j*q);
+            if (document.getElementById(rookMove) === null) {
                 break;
             }
-            if (document.getElementById(moves[i]).children.length > 0){
+            else {
+                moves[i] = 'R' + file + rank + '-' + rookMove;
+            }
+            if (document.getElementById(rookMove).children.length > 0) {
                 i++;
                 break;
             }
@@ -173,6 +173,20 @@ export const rookMoves = function(square) {
     findMoves(0, -1);
     findMoves(1, 0);
     findMoves(-1, 0);
+
+    return moves;
+}
+
+export const queenMoves = function (square) {
+    let moves = new Array();
+
+    moves = moves.concat(bishopMoves(square));
+    moves = moves.concat(rookMoves(square));
+
+    for (let i = 0; i < moves.length; i++) {
+        moves[i] = moves[i].substring(1);
+        moves[i] = "Q" + moves[i];
+    }
 
     return moves;
 }

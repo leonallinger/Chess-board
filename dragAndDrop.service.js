@@ -1,4 +1,4 @@
-import { pawnMoves, pawnCaptures, kingMoves, knightMoves, bishopMoves, rookMoves } from './pieceMoves.service.js'
+import { legalWhiteMoves, legalBlackMoves } from './legalPieceMoves.service.js'
 import { dropPieces } from './dropPieces.service.js'
 
 export const allowDrop = function(ev) {
@@ -15,6 +15,9 @@ window.drag = drag;
 export const drop = function (ev) {
     ev.preventDefault();
 
+    let whiteMoves = legalWhiteMoves();
+    let blackMoves = legalBlackMoves();
+
     let startPiece = ev.dataTransfer.getData("piece");
     let startSquare = ev.dataTransfer.getData("startSquare");
 
@@ -25,32 +28,32 @@ export const drop = function (ev) {
     let startingPieceType = startPiece.substring(6, num);
 
     if (startingPieceType === "pawn") {
-        if (pawnMoves(startSquare, startingPieceColor).indexOf(ev.target.id) > -1 || pawnCaptures(startSquare, startingPieceColor).indexOf(ev.target.parentNode.id) > -1) {
+        if (whiteMoves.indexOf(startSquare + '-' + ev.target.id) > -1 || whiteMoves.indexOf(startSquare + 'x' + ev.target.parentNode.id) > -1 || blackMoves.indexOf(startSquare + '-' + ev.target.id) > -1 || blackMoves.indexOf(startSquare + 'x' + ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }
     else if (startingPieceType === "king") {
-        if (kingMoves(startSquare).indexOf(ev.target.id) > -1 || kingMoves(startSquare).indexOf(ev.target.parentNode.id) > -1) {
+        if (whiteMoves.indexOf('K' + startSquare + '-' + ev.target.id) > -1 || blackMoves.indexOf('K' + startSquare + '-' + ev.target.id) > -1 || whiteMoves.indexOf('K' + startSquare + '-' + ev.target.parentNode.id) > -1 || blackMoves.indexOf('K' + startSquare + '-' + ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }
     else if (startingPieceType === "knight") {
-        if (knightMoves(startSquare).indexOf(ev.target.id) > -1 || knightMoves(startSquare).indexOf(ev.target.parentNode.id) > -1) {
+        if (whiteMoves.indexOf('N' + startSquare + '-' + ev.target.id) > -1 || blackMoves.indexOf('N' + startSquare + '-' + ev.target.id) > -1 || whiteMoves.indexOf('N' + startSquare + '-' + ev.target.parentNode.id) > -1 || blackMoves.indexOf('N' + startSquare + '-' + ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }
     else if (startingPieceType === "bishop") {
-        if (bishopMoves(startSquare).indexOf(ev.target.id) > -1 || bishopMoves(startSquare).indexOf(ev.target.parentNode.id) > -1) {
+        if (whiteMoves.indexOf('B' + startSquare + '-' + ev.target.id) > -1 || blackMoves.indexOf('B' + startSquare + '-' + ev.target.id) > -1 || whiteMoves.indexOf('B' + startSquare + '-' + ev.target.parentNode.id) > -1 || blackMoves.indexOf('B' + startSquare + '-' + ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }
     else if (startingPieceType === "rook") {
-        if (rookMoves(startSquare).indexOf(ev.target.id) > -1 || rookMoves(startSquare).indexOf(ev.target.parentNode.id) > -1) {
+        if (whiteMoves.indexOf('R' + startSquare + '-' + ev.target.id) > -1 || blackMoves.indexOf('R' + startSquare + '-' + ev.target.id) > -1 || whiteMoves.indexOf('R' + startSquare + '-' + ev.target.parentNode.id) > -1 || blackMoves.indexOf('R' + startSquare + '-' + ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }
     else if (startingPieceType === "queen") {
-        if (rookMoves(startSquare).indexOf(ev.target.id) > -1 || rookMoves(startSquare).indexOf(ev.target.parentNode.id) > -1 || bishopMoves(startSquare).indexOf(ev.target.id) > -1 || bishopMoves(startSquare).indexOf(ev.target.parentNode.id) > -1){
+        if (whiteMoves.indexOf('Q' + startSquare + '-' + ev.target.id) > -1 || blackMoves.indexOf('Q' + startSquare + '-' + ev.target.id) > -1 || whiteMoves.indexOf('Q' + startSquare + '-' + ev.target.parentNode.id) > -1 || blackMoves.indexOf('Q' + startSquare + '-' + ev.target.parentNode.id) > -1) {
             dropPieces(ev);
         }
     }

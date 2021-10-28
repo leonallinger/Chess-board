@@ -15,6 +15,10 @@ export const placePieces = function () {
 		imgElement.setAttribute('ondragstart', 'drag(event)');
 		imgElement.src = pieceImages[pieceType];
 
+		if (pieceType.substring(6, pieceType.length) === "king" || pieceType.substring(6, pieceType.length) === "rook") {
+			imgElement.setAttribute('hasMoved', 'false');
+        }
+
 		const square = document.getElementById(piecePosition);
 		square.append(imgElement);
 	}

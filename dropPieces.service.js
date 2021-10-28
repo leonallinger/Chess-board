@@ -7,25 +7,25 @@ export const dropPieces = function(ev){
     let piece = document.getElementById(data);
     let startingPieceColor = data.substring(0, 5);
 
-	if (ev.target.className === "square") {
-        if (startingPieceColor === playerTurn) {
+    if (startingPieceColor === playerTurn) {
+        if (piece.id.substring(6, 10) === "king" || piece.id.substring(6, 10) === "rook") {
+            piece.setAttribute('hasMoved', 'true');
+        }
 
+        if (ev.target.className === "square") {
             ev.target.appendChild(piece);
 
-            playerTurn = (playerTurn === "white") ? "black":"white";
+            playerTurn = (playerTurn === "white") ? "black" : "white";
 
             attackedByWhite();
             attackedByBlack();
         }
-    }
-    else {
-        if (startingPieceColor === playerTurn) {
-
+        else {
             let targetSquare = ev.target.parentNode;
             targetSquare.appendChild(piece);
             targetSquare.removeChild(ev.target);
 
-            playerTurn = (playerTurn === "white") ? "black":"white";
+            playerTurn = (playerTurn === "white") ? "black" : "white";
 
             attackedByWhite();
             attackedByBlack();

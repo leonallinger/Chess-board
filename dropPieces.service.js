@@ -1,43 +1,26 @@
 import { attackedByWhite, attackedByBlack } from './attackedSquares.service.js'
 
-let playerTurn = "white";
+export const dropPieces = function(startSquareId, targetSquareId, startingPieceColor){
+    let piece = document.getElementById(startSquareId).children[0];
+    let targetSquare = document.getElementById(targetSquareId);
 
-export const dropPieces = function(ev){
-    let data = ev.dataTransfer.getData("piece");
-    let piece = document.getElementById(data);
-    let startingPieceColor = data.substring(0, 5);
-
-    if (startingPieceColor === playerTurn) {
-        if (piece.id.substring(6, 10) === "king" || piece.id.substring(6, 10) === "rook") {
-            piece.setAttribute('hasMoved', 'true');
-        }
-
-        if (ev.target.className === "square") {
-            ev.target.appendChild(piece);
-
-            playerTurn = (playerTurn === "white") ? "black" : "white";
-
-            attackedByWhite();
-            attackedByBlack();
-        }
-        else {
-            let targetSquare = ev.target.parentNode;
-            targetSquare.appendChild(piece);
-            targetSquare.removeChild(ev.target);
-
-            playerTurn = (playerTurn === "white") ? "black" : "white";
-
-            attackedByWhite();
-            attackedByBlack();
-        }
+    if (piece.id.substring(6, 10) === "king" || piece.id.substring(6, 10) === "rook") {
+        piece.setAttribute('hasMoved', 'true');
     }
 
-    let playerTurnText = document.getElementById("playerTurn");
+    if (targetSquare.hasChildNodes() === false) {
+        targetSquare.appendChild(piece);
 
-    if (playerTurn === "white"){
-        playerTurnText.innerText = "White to move";
+        attackedByWhite();
+        attackedByBlack();
     }
-    else if (playerTurn === "black"){
-        playerTurnText.innerText = "Black to move";
+    else {
+        let targetPiece = targetSquare.children[0];
+            
+        targetSquare.appendChild(piece);
+        targetSquare.removeChild(targetPiece);
+
+        attackedByWhite();
+        attackedByBlack();
     }
 }

@@ -19,9 +19,17 @@ export const pawnMoves = function(square, pieceColor) {
         q = 7;
     }
 
-    let pawnMove1 = file + (rank + 1*p);
+    let pawnMove1 = file + (rank + p);
     if (document.getElementById(pawnMove1).children.length === 0) {
-        moves.push(file + rank + '-' + pawnMove1);
+        if (rank + p === 8 || rank + p === 1) {
+            moves.push(file + rank + '-' + pawnMove1 + "=Q");
+            moves.push(file + rank + '-' + pawnMove1 + "=R");
+            moves.push(file + rank + '-' + pawnMove1 + "=N");
+            moves.push(file + rank + '-' + pawnMove1 + "=B");
+        }
+        else {
+            moves.push(file + rank + '-' + pawnMove1);
+        }
     }
 
     if (rank === q){
@@ -49,15 +57,31 @@ export const pawnCaptures = function (square, pieceColor) {
         p = -1;
     }
 
-    let pawnCaptures1 = nextChar(file, 1) + (rank + 1 * p);
-    let pawnCaptures2 = nextChar(file, -1) + (rank + 1 * p);
+    let pawnCaptures1 = nextChar(file, 1) + (rank + p);
+    let pawnCaptures2 = nextChar(file, -1) + (rank + p);
 
     if (document.getElementById(pawnCaptures1) != null) {
-        moves.push(file + rank + 'x' + pawnCaptures1);
+        if (rank + p === 8 || rank + p === 1) {
+            moves.push(file + rank + 'x' + pawnCaptures1 + "=Q");
+            moves.push(file + rank + 'x' + pawnCaptures1 + "=R");
+            moves.push(file + rank + 'x' + pawnCaptures1 + "=N");
+            moves.push(file + rank + 'x' + pawnCaptures1 + "=B");
+        }
+        else {
+            moves.push(file + rank + 'x' + pawnCaptures1);
+        }
     }
 
     if (document.getElementById(pawnCaptures2) != null) {
-        moves.push(file + rank + 'x' + pawnCaptures2);
+        if (rank + p === 8 || rank + p === 1) {
+            moves.push(file + rank + 'x' + pawnCaptures2 + "=Q");
+            moves.push(file + rank + 'x' + pawnCaptures2 + "=R");
+            moves.push(file + rank + 'x' + pawnCaptures2 + "=N");
+            moves.push(file + rank + 'x' + pawnCaptures2 + "=B");
+        }
+        else {
+            moves.push(file + rank + 'x' + pawnCaptures2);
+        }
     }
 
     return moves;

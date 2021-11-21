@@ -43,6 +43,11 @@ export const drop = function (ev) {
             dropPieces(startSquare, targetSquare, startSquare + '-' + targetSquare);
             playerTurn = (playerTurn === "white") ? "black" : "white";
         }
+        else if (startingPieceColor === "white") {
+            if (whiteMoves.indexOf(startSquare + '-' + targetSquare + "=Q") || whiteMoves.indexOf(startSquare + '-' + targetSquare + "=Q")) {
+
+            }
+        }
     }
 
     else if (startingPieceType === "king") {

@@ -20,9 +20,20 @@ export const attackedByWhite = function () {
 
 	let moves = allWhiteMoves();
 	for (let i = 0; i < moves.length; i++) {
-		if (moves[i].length != 5 || moves[i].substring(2, 3) === 'x') {
-			let square = document.getElementById(moves[i].substring(moves[i].length - 2, moves[i].length));
-			square.setAttribute('isAttackedByWhite', 'true');
+
+		let x = moves[i].substring(0, 1);
+		let y = false;
+		let targetSquare;
+		if (x === 'K' || x === 'Q' || x === 'R' || x === 'B' || x === 'N') {
+			y = true;
+			targetSquare = document.getElementById(moves[i].substring(4, 6));
+		}
+		else {
+			targetSquare = document.getElementById(moves[i].substring(3, 5));
+        }
+
+		if (y === true || moves[i].substring(2, 3) === 'x') {
+			targetSquare.setAttribute('isAttackedByWhite', 'true');
 		}
 	}
 }
@@ -43,9 +54,20 @@ export const attackedByBlack = function () {
 
 	let moves = allBlackMoves();
 	for (let i = 0; i < moves.length; i++) {
-		if (moves[i].length != 5 || moves[i].substring(2, 3) === 'x') {
-			let square = document.getElementById(moves[i].substring(moves[i].length - 2, moves[i].length));
-			square.setAttribute('isAttackedByBlack', 'true');
+
+		let x = moves[i].substring(0, 1);
+		let y = false;
+		let targetSquare;
+		if (x === 'K' || x === 'Q' || x === 'R' || x === 'B' || x === 'N') {
+			y = true;
+			targetSquare = document.getElementById(moves[i].substring(4, 6));
+		}
+		else {
+			targetSquare = document.getElementById(moves[i].substring(3, 5));
+		}
+
+		if (y === true || moves[i].substring(2, 3) === 'x') {
+			targetSquare.setAttribute('isAttackedByBlack', 'true');
 		}
 	}
 }

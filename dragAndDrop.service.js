@@ -1,5 +1,6 @@
 import { legalWhiteMoves, legalBlackMoves } from './legalPieceMoves.service.js'
 import { dropPieces } from './dropPieces.service.js'
+import { promoteToQueen } from './promote.service.js'
 
 let playerTurn = "white";
 let whiteMoves;
@@ -44,8 +45,15 @@ export const drop = function (ev) {
             playerTurn = (playerTurn === "white") ? "black" : "white";
         }
         else if (startingPieceColor === "white") {
-            if (whiteMoves.indexOf(startSquare + '-' + targetSquare + "=Q") || whiteMoves.indexOf(startSquare + '-' + targetSquare + "=Q")) {
-
+            if (whiteMoves.indexOf(startSquare + '-' + targetSquare + "=Q") > -1 || whiteMoves.indexOf(startSquare + 'x' + targetSquare + "=Q") > -1) {
+                promoteToQueen(startSquare, targetSquare, "white");
+                playerTurn = (playerTurn === "white") ? "black" : "white";
+            }
+        }
+        else if (startingPieceColor === "black") {
+            if (blackMoves.indexOf(startSquare + '-' + targetSquare + "=Q") > -1 || blackMoves.indexOf(startSquare + 'x' + targetSquare + "=Q") > -1) {
+                promoteToQueen(startSquare, targetSquare, "black");
+                playerTurn = (playerTurn === "white") ? "black" : "white";
             }
         }
     }

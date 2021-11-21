@@ -29,10 +29,20 @@ export const legalWhiteMoves = function () {
             continue;
         }
 
-        let startSquare = document.getElementById(moves[i].substring(moves[i].length - 5, moves[i].length - 3));
+        let x = moves[i].substring(0, 1);
+        let y = false;
+        let startSquare, targetSquare;
+        if (x === 'K' || x === 'Q' || x === 'R' || x === 'B' || x === 'N') {
+            startSquare = document.getElementById(moves[i].substring(1, 3));
+            targetSquare = document.getElementById(moves[i].substring(4, 6));
+            y = true;
+        }
+        else {
+            startSquare = document.getElementById(moves[i].substring(0, 2));
+            targetSquare = document.getElementById(moves[i].substring(3, 5));
+        }
         let startPiece = startSquare.childNodes[0];
-
-        let targetSquare = document.getElementById(moves[i].substring(moves[i].length - 2, moves[i].length));
+        
         if (targetSquare.hasChildNodes()) {
             let targetPiece = targetSquare.childNodes[0];
             let targetPieceColor = targetPiece.getAttribute('id').substring(0, 5);
@@ -53,7 +63,7 @@ export const legalWhiteMoves = function () {
             }
         }
         else {
-            if (moves[i].length != 5 || moves[i].substring(2, 3) != 'x') {
+            if (y === true || moves[i].substring(2, 3) != 'x') {
                 targetSquare.appendChild(startPiece);
                 attackedByBlack();
 
@@ -95,10 +105,20 @@ export const legalBlackMoves = function () {
             continue;
         }
 
-        let startSquare = document.getElementById(moves[i].substring(moves[i].length - 5, moves[i].length - 3));
+        let x = moves[i].substring(0, 1);
+        let y = false;
+        let startSquare, targetSquare;
+        if (x === 'K' || x === 'Q' || x === 'R' || x === 'B' || x === 'N') {
+            startSquare = document.getElementById(moves[i].substring(1, 3));
+            targetSquare = document.getElementById(moves[i].substring(4, 6));
+            y = true;
+        }
+        else {
+            startSquare = document.getElementById(moves[i].substring(0, 2));
+            targetSquare = document.getElementById(moves[i].substring(3, 5));
+        }
         let startPiece = startSquare.childNodes[0];
 
-        let targetSquare = document.getElementById(moves[i].substring(moves[i].length - 2, moves[i].length));
         if (targetSquare.hasChildNodes()) {
             let targetPiece = targetSquare.childNodes[0];
             let targetPieceColor = targetPiece.getAttribute('id').substring(0, 5);
@@ -119,7 +139,7 @@ export const legalBlackMoves = function () {
             }
         }
         else {
-            if (moves[i].length != 5 || moves[i].substring(2, 3) != 'x') {
+            if (y === true || moves[i].substring(2, 3) != 'x') {
                 targetSquare.appendChild(startPiece);
                 attackedByWhite();
 

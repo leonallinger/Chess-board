@@ -4,8 +4,7 @@ import { whiteIsInCheck, blackIsInCheck } from './isInCheck.service.js';
 export const dropPieces = function(startSquareId, targetSquareId, move){
     let piece = document.getElementById(startSquareId).children[0];
     let targetSquare = document.getElementById(targetSquareId);
-
-    let lastMoveText = document.getElementById("lastMoveBox");
+    let targetPiece = targetSquare.children[0];
 
     if (piece.id.substring(6, 10) === "king" || piece.id.substring(6, 10) === "rook") {
         piece.setAttribute('hasMoved', 'true');
@@ -13,22 +12,18 @@ export const dropPieces = function(startSquareId, targetSquareId, move){
 
     if (targetSquare.hasChildNodes() === false) {
         targetSquare.appendChild(piece);
-
-        attackedByWhite();
-        attackedByBlack();
     }
     else {
-        let targetPiece = targetSquare.children[0];
-
         targetSquare.removeChild(targetPiece);
         targetSquare.appendChild(piece);
-
-        attackedByWhite();
-        attackedByBlack();
 
         move = move.replace('-', 'x');
     }
 
+    attackedByWhite();
+    attackedByBlack();
+
     if (whiteIsInCheck() === true || blackIsInCheck() === true) move += '+';
+    let lastMoveText = document.getElementById("lastMoveBox");
     lastMoveText.innerText = move;
 }

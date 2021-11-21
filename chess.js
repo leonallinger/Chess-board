@@ -14,4 +14,7 @@ addEventListener('DOMContentLoaded', _ => {
     attackedByBlack();
 })
 
-import { allowDrop, drag, drop } from './dragAndDrop.service.js'
+import { allowDrop, drag, drop, initialLegalMoves } from './dragAndDrop.service.js'
+addEventListener('DOMContentLoaded', _ => {
+    initialLegalMoves();
+})

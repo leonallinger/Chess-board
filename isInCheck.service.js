@@ -18,7 +18,7 @@ export const whiteIsInCheck = function(){
 			let num = piece.indexOf("_", 6);
 			let pieceType = piece.substring(6, num);
 
-			if (pieceType === "king"){
+			if (pieceType === "King"){
 				if (pieceColor === "white"){
 					if (square.getAttribute("isAttackedByBlack") === "true"){
 						return true;
@@ -54,7 +54,7 @@ export const blackIsInCheck = function(){
 			let num = piece.indexOf("_", 6);
 			let pieceType = piece.substring(6, num);
 
-			if (pieceType === "king"){
+			if (pieceType === "King"){
 				if (pieceColor === "black"){
 					if (square.getAttribute("isAttackedByWhite") === "true"){
 						return true;

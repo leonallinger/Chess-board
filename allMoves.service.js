@@ -24,23 +24,23 @@ export const allWhiteMoves = function () {
                 let pieceType = piece.substring(6, num);
 
 				switch (pieceType) {
-					case "king":
+					case "King":
 						allWhiteMoves = allWhiteMoves.concat(kingMoves(piecePosition[i]));
 						break;
 					case "pawn":
 						allWhiteMoves = allWhiteMoves.concat(pawnMoves(piecePosition[i], pieceColor));
 						allWhiteMoves = allWhiteMoves.concat(pawnCaptures(piecePosition[i], pieceColor));
 						break;
-					case "knight":
+					case "Knight":
 						allWhiteMoves = allWhiteMoves.concat(knightMoves(piecePosition[i]));
 						break;
-					case "bishop":
+					case "Bishop":
 						allWhiteMoves = allWhiteMoves.concat(bishopMoves(piecePosition[i]));
 						break;
-					case "rook":
+					case "Rook":
 						allWhiteMoves = allWhiteMoves.concat(rookMoves(piecePosition[i]));
 						break;
-					case "queen":
+					case "Queen":
 						allWhiteMoves = allWhiteMoves.concat(queenMoves(piecePosition[i]));
 						break;
 				}
@@ -75,23 +75,23 @@ export const allBlackMoves = function () {
 				let pieceType = piece.substring(6, num);
 
 				switch (pieceType) {
-					case "king":
+					case "King":
 						allBlackMoves = allBlackMoves.concat(kingMoves(piecePosition[i]));
 						break;
 					case "pawn":
 						allBlackMoves = allBlackMoves.concat(pawnMoves(piecePosition[i], pieceColor));
 						allBlackMoves = allBlackMoves.concat(pawnCaptures(piecePosition[i], pieceColor));
 						break;
-					case "knight":
+					case "Knight":
 						allBlackMoves = allBlackMoves.concat(knightMoves(piecePosition[i]));
 						break;
-					case "bishop":
+					case "Bishop":
 						allBlackMoves = allBlackMoves.concat(bishopMoves(piecePosition[i]));
 						break;
-					case "rook":
+					case "Rook":
 						allBlackMoves = allBlackMoves.concat(rookMoves(piecePosition[i]));
 						break;
-					case "queen":
+					case "Queen":
 						allBlackMoves = allBlackMoves.concat(queenMoves(piecePosition[i]));
 						break;
 				}

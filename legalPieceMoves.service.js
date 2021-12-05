@@ -30,12 +30,12 @@ export const legalWhiteMoves = function () {
         }
 
         let x = moves[i].substring(0, 1);
-        let y = false;
+        let isPiece = false;
         let startSquare, targetSquare;
         if (x === 'K' || x === 'Q' || x === 'R' || x === 'B' || x === 'N') {
             startSquare = document.getElementById(moves[i].substring(1, 3));
             targetSquare = document.getElementById(moves[i].substring(4, 6));
-            y = true;
+            isPiece = true;
         }
         else {
             startSquare = document.getElementById(moves[i].substring(0, 2));
@@ -63,7 +63,7 @@ export const legalWhiteMoves = function () {
             }
         }
         else {
-            if (y === true || moves[i].substring(2, 3) != 'x') {
+            if (isPiece === true || moves[i].substring(2, 3) != 'x') {
                 targetSquare.appendChild(startPiece);
                 attackedByBlack();
 
@@ -106,12 +106,12 @@ export const legalBlackMoves = function () {
         }
 
         let x = moves[i].substring(0, 1);
-        let y = false;
+        let isPiece = false;
         let startSquare, targetSquare;
         if (x === 'K' || x === 'Q' || x === 'R' || x === 'B' || x === 'N') {
             startSquare = document.getElementById(moves[i].substring(1, 3));
             targetSquare = document.getElementById(moves[i].substring(4, 6));
-            y = true;
+            isPiece = true;
         }
         else {
             startSquare = document.getElementById(moves[i].substring(0, 2));
@@ -139,7 +139,7 @@ export const legalBlackMoves = function () {
             }
         }
         else {
-            if (y === true || moves[i].substring(2, 3) != 'x') {
+            if (isPiece === true || moves[i].substring(2, 3) != 'x') {
                 targetSquare.appendChild(startPiece);
                 attackedByWhite();
 

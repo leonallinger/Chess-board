@@ -6,7 +6,7 @@ export const dropPieces = function(startSquareId, targetSquareId, move){
     let targetSquare = document.getElementById(targetSquareId);
     let targetPiece = targetSquare.children[0];
 
-    if (piece.id.substring(6, 10) === "king" || piece.id.substring(6, 10) === "rook") {
+    if (piece.id.substring(6, 10) === "King" || piece.id.substring(6, 10) === "Rook") {
         piece.setAttribute('hasMoved', 'true');
     }
 

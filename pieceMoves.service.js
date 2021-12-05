@@ -220,7 +220,7 @@ export const kingsideCastle = function (pieceColor){
 
     if (pieceColor === "white"){
         if (document.getElementById("e1").hasChildNodes() && document.getElementById("h1").hasChildNodes()){
-            if (document.getElementById("e1").children[0].id === "white_king_e1" && document.getElementById("h1").children[0].id === "white_rook_h1"){
+            if (document.getElementById("e1").children[0].id === "white_King_e1" && document.getElementById("h1").children[0].id === "white_Rook_h1"){
                 if (document.getElementById("e1").children[0].getAttribute("hasMoved") === "false" && document.getElementById("h1").children[0].getAttribute("hasMoved") === "false"){
                     if (document.getElementById("f1").hasChildNodes() === false && document.getElementById("g1").hasChildNodes() === false){
                         moves[0] = "O-O";
@@ -231,7 +231,7 @@ export const kingsideCastle = function (pieceColor){
     }
     else if (pieceColor === "black"){
         if (document.getElementById("e8").hasChildNodes() && document.getElementById("h8").hasChildNodes()){
-            if (document.getElementById("e8").children[0].id === "black_king_e8" && document.getElementById("h8").children[0].id === "black_rook_h8"){
+            if (document.getElementById("e8").children[0].id === "black_King_e8" && document.getElementById("h8").children[0].id === "black_Rook_h8"){
                 if (document.getElementById("e8").children[0].getAttribute("hasMoved") === "false" && document.getElementById("h8").children[0].getAttribute("hasMoved") === "false"){
                     if (document.getElementById("f8").hasChildNodes() === false && document.getElementById("g8").hasChildNodes() === false){
                         moves[0] = "O-O";
@@ -249,7 +249,7 @@ export const queensideCastle = function (pieceColor){
 
     if (pieceColor === "white"){
         if (document.getElementById("e1").hasChildNodes() && document.getElementById("a1").hasChildNodes()){
-            if (document.getElementById("e1").children[0].id === "white_king_e1" && document.getElementById("a1").children[0].id === "white_rook_a1"){
+            if (document.getElementById("e1").children[0].id === "white_King_e1" && document.getElementById("a1").children[0].id === "white_Rook_a1"){
                 if (document.getElementById("e1").children[0].getAttribute("hasMoved") === "false" && document.getElementById("a1").children[0].getAttribute("hasMoved") === "false"){
                     if (document.getElementById("d1").hasChildNodes() === false && document.getElementById("c1").hasChildNodes() === false && document.getElementById("b1").hasChildNodes() === false){
                         moves[0] = "O-O-O";
@@ -260,7 +260,7 @@ export const queensideCastle = function (pieceColor){
     }
     else if (pieceColor === "black"){
         if (document.getElementById("e8").hasChildNodes() && document.getElementById("a8").hasChildNodes()){
-            if (document.getElementById("e8").children[0].id === "black_king_e8" && document.getElementById("a8").children[0].id === "black_rook_a8"){
+            if (document.getElementById("e8").children[0].id === "black_King_e8" && document.getElementById("a8").children[0].id === "black_Rook_a8"){
                 if (document.getElementById("e8").children[0].getAttribute("hasMoved") === "false" && document.getElementById("a8").children[0].getAttribute("hasMoved") === "false"){
                     if (document.getElementById("d8").hasChildNodes() === false && document.getElementById("c8").hasChildNodes() === false && document.getElementById("b8").hasChildNodes() === false){
                         moves[0] = "O-O-O";

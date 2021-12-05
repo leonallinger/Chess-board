@@ -3,8 +3,7 @@ import { dropPieces } from './dropPieces.service.js'
 import { promoteToQueen } from './promote.service.js'
 
 let playerTurn = "white";
-let whiteMoves;
-let blackMoves;
+let whiteMoves, blackMoves;
 
 export const initialLegalMoves = function () {
     whiteMoves = legalWhiteMoves();
@@ -30,23 +29,22 @@ export const drop = function (ev) {
     let targetSquare = (ev.target.className === "square") ? ev.target.id : ev.target.parentNode.id;
 
     let startingPieceColor = startPiece.substring(0, 5);
+    if (playerTurn != startingPieceColor) return;
 
     let num = startPiece.indexOf("_", 6);
     let startingPieceType = startPiece.substring(6, num);
 
     let startingPieceLetter = startPiece.substring(6, 7);
-    if (startingPieceType === "Knight") startingPieceLetter = "N";
+    if (startingPieceType === "Knight") startingPieceLetter = 'N';
+    if (startingPieceType === "pawn") startingPieceLetter = '';
 
-    if (playerTurn != startingPieceColor){
-        return;
+    if (whiteMoves.indexOf(startingPieceLetter + startSquare + '-' + targetSquare) > -1 || blackMoves.indexOf(startingPieceLetter + startSquare + '-' + targetSquare) > -1 || whiteMoves.indexOf(startingPieceLetter + startSquare + 'x' + targetSquare) > -1 || blackMoves.indexOf(startingPieceLetter + startSquare + 'x' + targetSquare) > -1) {
+        dropPieces(startSquare, targetSquare, startingPieceLetter + startSquare + '-' + targetSquare);
+        playerTurn = (playerTurn === "white") ? "black" : "white";
     }
 
-    if (startingPieceType === "pawn") {
-        if (whiteMoves.indexOf(startSquare + '-' + targetSquare) > -1 || whiteMoves.indexOf(startSquare + 'x' + targetSquare) > -1 || blackMoves.indexOf(startSquare + '-' + targetSquare) > -1 || blackMoves.indexOf(startSquare + 'x' + targetSquare) > -1) {
-            dropPieces(startSquare, targetSquare, startSquare + '-' + targetSquare);
-            playerTurn = (playerTurn === "white") ? "black" : "white";
-        }
-        else if (startingPieceColor === "white") {
+    else if (startingPieceType === "pawn") {
+        if (startingPieceColor === "white") {
             if (whiteMoves.indexOf(startSquare + '-' + targetSquare + "=Q") > -1 || whiteMoves.indexOf(startSquare + 'x' + targetSquare + "=Q") > -1) {
                 promoteToQueen(startSquare, targetSquare, "white");
                 playerTurn = (playerTurn === "white") ? "black" : "white";
@@ -61,11 +59,7 @@ export const drop = function (ev) {
     }
 
     else if (startingPieceType === "King") {
-        if (whiteMoves.indexOf('K' + startSquare + '-' + targetSquare) > -1 || blackMoves.indexOf('K' + startSquare + '-' + targetSquare) > -1) {
-            dropPieces(startSquare, targetSquare, 'K' + startSquare + '-' + targetSquare);
-            playerTurn = (playerTurn === "white") ? "black" : "white";
-        }
-        else if (startingPieceColor === "white") {
+        if (startingPieceColor === "white") {
             if (whiteMoves.indexOf("O-O") > -1 && targetSquare === "g1") {
                 dropPieces(startSquare, targetSquare, "O-O");
                 dropPieces("h1", "f1", "O-O");
@@ -88,14 +82,6 @@ export const drop = function (ev) {
                 dropPieces("a8", "d8", "O-O-O");
                 playerTurn = (playerTurn === "white") ? "black" : "white";
             }
-        }
-
-    }
-    
-    else {
-        if (whiteMoves.indexOf(startingPieceLetter + startSquare + '-' + targetSquare) > -1 || blackMoves.indexOf(startingPieceLetter + startSquare + '-' + targetSquare) > -1) {
-            dropPieces(startSquare, targetSquare, startingPieceLetter + startSquare + '-' + targetSquare);
-            playerTurn = (playerTurn === "white") ? "black" : "white";
         }
     }
 

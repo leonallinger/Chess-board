@@ -15,7 +15,7 @@ export const placePieces = function () {
 		imgElement.setAttribute('ondragstart', 'drag(event)');
 		imgElement.src = pieceImages[pieceType];
 
-		if (pieceType.substring(6, pieceType.length) === "king" || pieceType.substring(6, pieceType.length) === "rook") {
+		if (pieceType.substring(6, pieceType.length) === "King" || pieceType.substring(6, pieceType.length) === "Rook") {
 			imgElement.setAttribute('hasMoved', 'false');
         }
 

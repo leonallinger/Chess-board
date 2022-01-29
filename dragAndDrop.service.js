@@ -1,6 +1,7 @@
 import { legalWhiteMoves, legalBlackMoves } from './legalPieceMoves.service.js'
 import { dropPieces } from './dropPieces.service.js'
 import { promoteToQueen } from './promote.service.js'
+import { whiteIsInCheck, blackIsInCheck } from './isInCheck.service.js';
 
 let playerTurn = "white";
 let whiteMoves, blackMoves;
@@ -98,5 +99,27 @@ export const drop = function (ev) {
 
     whiteMoves = legalWhiteMoves();
     blackMoves = legalBlackMoves();
+
+    if (whiteMoves.length === 0 && playerTurn === "white") {
+        if (whiteIsInCheck() === true) {
+            alert("Checkmate.")
+            document.getElementById("lastMoveBox").innerText = "0-1";
+        }
+        else {
+            alert("Stalemate.");
+            document.getElementById("lastMoveBox").innerText = "1/2-1/2";
+        }
+    }
+
+    if (blackMoves.length === 0 && playerTurn === "black") {
+        if (blackIsInCheck() === true) {
+            alert("Checkmate.")
+            document.getElementById("lastMoveBox").innerText = "1-0";
+        }
+        else {
+            alert("Stalemate.");
+            document.getElementById("lastMoveBox").innerText = "1/2-1/2";
+        }
+    }
 }
 window.drop = drop;

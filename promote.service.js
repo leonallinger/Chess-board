@@ -21,10 +21,10 @@ export const promoteToQueen = function(startSquareId, targetSquareId, color){
 
 	let imgElement = document.createElement('img');
 	imgElement.classList.add('piece');
-	imgElement.setAttribute('id', color + '_' + "queen" + '_' + targetSquareId);
+	imgElement.setAttribute('id', color + '_' + "Queen" + '_' + targetSquareId);
 	imgElement.setAttribute('draggable', 'true');
 	imgElement.setAttribute('ondragstart', 'drag(event)');
-	imgElement.src = pieceImages[color + '_' + "queen"];
+	imgElement.src = pieceImages[color + '_' + "Queen"];
 
 	targetSquare.removeChild(piece);
 	targetSquare.append(imgElement);
